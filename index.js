@@ -11,19 +11,17 @@ btn.addEventListener('click', () => {
 
     const coordAPI = `http://api.openweathermap.org/geo/1.0/direct?q=${ciudad},${pais}&limit=1&appid=${Key}`;
 
-
     fetch(coordAPI)
     .then(response => response.json())
-    .then(data => function() {
+    .then(data => {
         const lat = data[0].lat;
         const lon = data[0].lon;
-        console.log(lat, lon);
 
-        const weatherAPI = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${Key}`
+        const weatherAPI = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${Key}`;
 
         fetch(weatherAPI)
         .then(response => response.json())
-        .then(info => function() {
+        .then(info => {
             const temp = Math.round(info.main.temp - 273.15);
             const sensacion = Math.round(info.main.feels_like - 273.15);
             const maxTemp = Math.round(info.main.temp_max - 273.15);
@@ -34,16 +32,14 @@ btn.addEventListener('click', () => {
             const region = info.name;
 
             const datos = document.getElementById('datos');
-            console.log(temp);
             datos.innerHTML = 
             `
             <h1>${region}</h1>
             <h2>${tiempo}</h2>
-            <h3>${desc}</h3>
             <h4>${temp}°</h4>
             <p>Sensacion térmica: ${sensacion}°</p>
-            <p>Máxima Temperatura: ${maxTemp} </p>
-            <p>Mínima Temperatura: ${minTemp} </p>
+            <p>Máxima Temperatura: ${maxTemp}° </p>
+            <p>Mínima Temperatura: ${minTemp}° </p>
             <p>Humedad: ${humidity}% </p>
             `
         })
