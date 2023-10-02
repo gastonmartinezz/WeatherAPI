@@ -51,3 +51,27 @@ btn.addEventListener('click', () => {
         console.log("Error: ", error);
     })
 })
+
+
+
+const boton = document.getElementById('searchBtn');
+const datos = document.getElementById('datos');
+
+boton.addEventListener('click', () => {
+  // Alterna la visibilidad de la tarjeta al hacer clic en el botón
+  if (datos.style.display === 'none' || datos.style.display === '') {
+    datos.style.display = 'block';
+  } else {
+    datos.style.display = 'none';
+  }
+});
+
+const btnOnClick = document.getElementById('searchBtn');
+
+boton.addEventListener('click', () => {
+  btnOnClick.classList.add('button-clicked');
+
+  setTimeout(() => {
+    btnOnClick.classList.remove('button-clicked');
+  }, 500); 
+});
